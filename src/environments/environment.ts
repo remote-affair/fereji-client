@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  baseApiUrl: 'https://fereji-api.herokuapp.com/api/v1',
 };
 
 /*

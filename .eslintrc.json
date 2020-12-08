@@ -42,7 +42,19 @@
         "react/jsx-curly-spacing": "off",
         "react/jsx-equals-spacing": "off",
         "react/jsx-wrap-multilines": "off",
-        "space-in-parens": ["off", "never"]
+        "space-in-parens": ["off", "never"],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "property",
+            "format": ["camelCase", "snake_case"]
+          },
+          {
+            "selector": "property",
+            "modifiers": ["readonly"],
+            "format": ["UPPER_CASE"]
+          }
+        ]
       }
     },
     {
