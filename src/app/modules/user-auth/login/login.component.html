@@ -1,1 +1,29 @@
-<p>login works!</p>
+<form [formGroup]="authForm" novalidate (submit)="login()">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+      <label for="username">Username</label>
+      <input
+        formControlName="username"
+        id="username"
+        type="text"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+      <label for="username">Password</label>
+      <input
+        formControlName="username"
+        id="username"
+        type="password"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+      <button class="btn btn-primary custom-auth-btn">Login</button>
+    </div>
+  </div>
+</form>
