@@ -1,1 +1,62 @@
-<p>sign-up works!</p>
+<form [formGroup]="authForm" novalidate (submit)="login()">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+      <label for="first_name">First Name</label>
+      <input
+        formControlName="first_name"
+        id="first_name"
+        type="text"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+      <label for="last_name">Last Name</label>
+      <input
+        formControlName="last_name"
+        id="last_name"
+        type="text"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+      <label for="email">Email</label>
+      <input
+        formControlName="email"
+        id="email"
+        type="text"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+      <label for="username">Username</label>
+      <input
+        formControlName="username"
+        id="username"
+        type="text"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+      <label for="organization">Organization</label>
+      <input
+        formControlName="organization"
+        id="organization"
+        type="text"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
+      <button class="btn btn-primary custom-auth-btn">Sign Up</button>
+    </div>
+  </div>
+</form>
