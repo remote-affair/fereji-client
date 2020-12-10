@@ -43,6 +43,7 @@
         "react/jsx-equals-spacing": "off",
         "react/jsx-wrap-multilines": "off",
         "space-in-parens": ["off", "never"],
+        "@typescript-eslint/quotes": "off",
         "@typescript-eslint/naming-convention": [
           "error",
           {

@@ -7,11 +7,21 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { catchError, filter, finalize, switchMap, take } from 'rxjs/operators';
+import {
+  catchError,
+  filter,
+  finalize,
+  map,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs/operators';
 
 import { Token } from '@fereji/models/token';
 import { TokenStorageService } from '@fereji/services/token-storage/token-storage.service';
 import { environment } from '@env/environment';
+import { HttpService } from '@fereji/services/http/http.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -22,7 +32,11 @@ export class AuthInterceptor implements HttpInterceptor {
     null,
   );
 
-  constructor(private tokenService: TokenStorageService) {
+  constructor(
+    private tokenService: TokenStorageService,
+    private httpService: HttpService,
+    private router: Router,
+  ) {
     this.token = this.tokenService.getToken();
   }
 
@@ -57,8 +71,8 @@ export class AuthInterceptor implements HttpInterceptor {
             this.refreshTokenSubject.next(null);
 
             return this.refreshToken().pipe(
-              switchMap((token: Token) => {
-                this.refreshTokenSubject.next(token);
+              switchMap((success: boolean) => {
+                this.refreshTokenSubject.next(success);
                 return next.handle(this.addAuthenticationToken(request));
               }),
 
@@ -97,7 +111,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return request.clone({
       headers: request.headers.set(
         this.AUTH_HEADER,
-        `Bearer ${this.token.jwt}`,
+        `${this.token.token_type} ${this.token.access_token}`,
       ),
     });
   }
@@ -121,18 +135,17 @@ export class AuthInterceptor implements HttpInterceptor {
   /**
    * Fetches a new token and replaces it localStorage
    *
-   * @todo implement this logic correctly to talk to the backend
+   * @returns an observable of the fetched token or http error
    */
-  private refreshToken(): Observable<Token> {
-    const fakeToken = {
-      expires_in: 4500,
-      jwt: 'some jwt',
-      issued_at: Date().toString(),
-      refresh_token: 'some refresh token',
-    };
+  private refreshToken(): Observable<boolean> {
+    this.tokenService.removeToken();
 
-    this.tokenService.saveToken(fakeToken);
-
-    return of(fakeToken);
+    return this.httpService.makeRequest('GET', '/user/auth').pipe(
+      tap(token => {
+        this.tokenService.saveToken(token);
+      }),
+      map(() => true),
+      catchError(() => of(false)),
+    );
   }
 }
