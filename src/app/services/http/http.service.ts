@@ -17,8 +17,8 @@ export class HttpService {
 
   makeRequest(
     method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
-    urlResource: UrlOptions,
-    options:
+    urlOptions: UrlOptions | string,
+    options?:
       | {
           body?: any;
           headers?:
@@ -35,7 +35,7 @@ export class HttpService {
         }
       | undefined,
   ): Observable<any> {
-    const requestUrl = this.getRequestUrl(urlResource);
+    const requestUrl = this.getRequestUrl(urlOptions);
 
     if (!requestUrl) {
       throw new HttpErrorResponse({
@@ -46,7 +46,7 @@ export class HttpService {
     return this.http.request(method, requestUrl, options);
   }
 
-  getRequestUrl(urlOptions: UrlOptions): string | null {
+  protected getRequestUrl(urlOptions: UrlOptions | string): string | null {
     if (typeof urlOptions === 'object') {
       if (urlOptions.isExternal) {
         if (!urlOptions.base) {
