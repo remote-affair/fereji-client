@@ -57,11 +57,16 @@ export class AuthInterceptor implements HttpInterceptor {
             // refreshTokenSubject has a non-null value which means
             // the new token is ready and we can retry the request again
             return this.refreshTokenSubject.pipe(
-              filter(Boolean), // filter(request => request !== null)
+              filter(result => result !== null),
               take(1),
-              switchMap(() =>
-                next.handle(this.addAuthenticationToken(request)),
-              ),
+              switchMap(result => {
+                if (result) {
+                  return next.handle(this.addAuthenticationToken(request));
+                }
+
+                this.router.navigate(['/users/login']);
+                return throwError(error);
+              }),
             );
           } else {
             this.isRefreshingToken = true;
