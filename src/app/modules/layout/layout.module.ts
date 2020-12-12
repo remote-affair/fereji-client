@@ -14,6 +14,6 @@ import { RouterModule } from '@angular/router';
     GuestLayoutComponent,
     DashboardLayoutComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, RouterModule],
 })
 export class LayoutModule {}
