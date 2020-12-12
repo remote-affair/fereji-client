@@ -1,7 +1,11 @@
-<frj-header></frj-header>
+<div class="main-container">
+  <frj-header></frj-header>
 
-<main class="clr-display-flex clr-flex-column clr-flex-grow-1">
-  <router-outlet></router-outlet>
-</main>
+  <main class="content-container clr-display-flex clr-flex-grow-1">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
 
-<frj-footer></frj-footer>
+  <frj-footer></frj-footer>
+</div>
