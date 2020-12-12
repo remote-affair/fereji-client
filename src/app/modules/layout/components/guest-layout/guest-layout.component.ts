@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'frj-guest-layout',
   templateUrl: './guest-layout.component.html',

@@ -6,6 +6,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { GuestLayoutComponent } from './components/guest-layout/guest-layout.component';
 import { DashboardLayoutComponent } from './components/dashboard-layout/dashboard-layout.component';
 import { RouterModule } from '@angular/router';
+import { ClrIconModule } from '@clr/angular';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,6 @@ import { RouterModule } from '@angular/router';
     GuestLayoutComponent,
     DashboardLayoutComponent,
   ],
-  imports: [CommonModule, RouterModule, RouterModule],
+  imports: [CommonModule, RouterModule, RouterModule, ClrIconModule],
 })
 export class LayoutModule {}

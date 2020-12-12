@@ -7,4 +7,10 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.clr-display-flex {
+  display: flex !important;
 }
