@@ -6,10 +6,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { httpInterceptorProviders } from './interceptors';
 import { LayoutModule } from './modules/layout/layout.module';
+import { ClarityModule } from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, LayoutModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    LayoutModule,
+    ClarityModule,
+    BrowserAnimationsModule,
+  ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
