@@ -25,7 +25,10 @@
     "@clr/icons": "4.0.8",
     "@clr/ui": "4.0.8",
     "@webcomponents/webcomponentsjs": "^2.0.0",
+    "bootstrap": "^4.5.0",
     "express": "^4.17.1",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.14.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  title = 'Sign In';
   authForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder) {}
