@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { TopOffsetTitleModule } from '@fereji/modules/layout/components/top-offset-title/top-offset-title.module';
+import { ButtonSpinnerModule } from '@fereji/modules/shared/button-spinner/button-spinner.module';
 
 import { LoginComponent } from './login.component';
 
@@ -14,6 +15,7 @@ import { LoginComponent } from './login.component';
     ReactiveFormsModule,
     TopOffsetTitleModule,
     RouterModule,
+    ButtonSpinnerModule,
   ],
   exports: [LoginComponent],
 })
