@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
+  title = 'Create User Account';
   authForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder) {}
@@ -22,7 +23,6 @@ export class SignUpComponent implements OnInit {
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       organization: ['', [Validators.required]],
-      password: ['', [Validators.required]],
     });
   }
 
