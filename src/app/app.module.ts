@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { ClarityModule } from '@clr/angular';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +21,11 @@ import { LayoutModule } from './modules/layout/layout.module';
     HttpClientModule,
     LayoutModule,
     ClarityModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
