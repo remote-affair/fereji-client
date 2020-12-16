@@ -52,9 +52,13 @@
       />
     </div>
   </div>
+  <frj-form-error [error]="errorMessage" *ngIf="showError"></frj-form-error>
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-      <button class="btn custom-auth-btn" type="submit">Sign up</button>
+      <button class="btn custom-auth-btn" type="submit" *ngIf="!showSpinner">
+        Sign up
+      </button>
+      <frj-button-spinner *ngIf="showSpinner"></frj-button-spinner>
     </div>
   </div>
 </form>

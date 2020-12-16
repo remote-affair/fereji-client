@@ -7,7 +7,7 @@ export interface User {
   last_name: string;
   email: string;
   is_active?: boolean;
-  date_joined: string;
+  date_joined?: string;
   user_uuid?: string;
   groups?: Array<string>;
   user_permissions?: Array<string>;
