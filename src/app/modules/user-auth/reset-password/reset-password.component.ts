@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'frj-reset-password',
@@ -6,7 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reset-password.component.scss'],
 })
 export class ResetPasswordComponent implements OnInit {
-  constructor() {}
+  title = 'Reset password';
+  authForm: FormGroup = new FormGroup({});
 
-  ngOnInit(): void {}
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  initForm() {
+    this.authForm = this.fb.group({
+      password: ['', [Validators.required]],
+      confirm_password: ['', [Validators.required]],
+    });
+  }
+
+  resetPassword() {
+    console.log('console');
+    console.log(this.authForm.value);
+  }
 }
