@@ -1,4 +1,4 @@
-<form [formGroup]="authForm" novalidate (submit)="login()">
+<form [formGroup]="authForm" novalidate (submit)="signup()">
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
       <label for="first_name">First Name</label>
@@ -56,7 +56,9 @@
   </div>
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group">
-      <button class="btn btn-primary custom-auth-btn">Sign Up</button>
+      <button class="btn btn-primary custom-auth-btn" type="submit">
+        Sign Up
+      </button>
     </div>
   </div>
 </form>

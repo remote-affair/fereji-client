@@ -26,5 +26,8 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  login() {}
+  signup() {
+    console.log('console');
+    console.log(this.authForm.value);
+  }
 }

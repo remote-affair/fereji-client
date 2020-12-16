@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
+import { LayoutRoutingModule } from './layout-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ClrIconModule, ClrVerticalNavModule } from '@clr/angular';
@@ -21,6 +23,7 @@ import { AsideComponent } from './components/aside/aside.component';
   ],
   imports: [
     CommonModule,
+    LayoutRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
