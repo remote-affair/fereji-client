@@ -22,7 +22,7 @@ import { LayoutModule } from './modules/layout/layout.module';
     LayoutModule,
     ClarityModule,
     ToastrModule.forRoot({
-      timeOut: 5000,
+      timeOut: 10000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { ToastrService } from 'ngx-toastr';
 
 import { CreateAccountModel } from '@fereji/models/users/create-account-model';
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
@@ -17,7 +20,12 @@ export class SignUpComponent implements OnInit {
   title = 'Create User Account';
   authForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder, private aas: AuthApiService) {}
+  constructor(
+    private fb: FormBuilder,
+    private aas: AuthApiService,
+    private toastr: ToastrService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -46,11 +54,14 @@ export class SignUpComponent implements OnInit {
 
     const sub = this.aas.signup(this.preparePayload()).subscribe({
       next: (res: any) => {
-        console.log(res);
         this.showSpinner = false;
+        this.toastr.info(
+          'Account successfully created. Check your email for the confirmation link',
+          'Success',
+        );
+        this.router.navigate(['/users/login']);
       },
       error: (error: any) => {
-        console.log(error);
         this.errorMessage = error.statusText;
         this.showSpinner = false;
         this.showError = true;
