@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DashboardLayoutComponent } from './components/dashboard-layout/dashboard-layout.component';
 import { GuestLayoutComponent } from './components/guest-layout/guest-layout.component';
 import { AsideComponent } from './components/aside/aside.component';
+import { EmailConfirmationLayoutComponent } from './components/email-confirmation-layout/email-confirmation-layout.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AsideComponent } from './components/aside/aside.component';
     GuestLayoutComponent,
     DashboardLayoutComponent,
     AsideComponent,
+    EmailConfirmationLayoutComponent,
   ],
   imports: [
     CommonModule,
