@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@fereji/guards/auth/auth.guard';
 
 import { DashboardLayoutComponent } from './components/dashboard-layout/dashboard-layout.component';
+import { EmailConfirmationLayoutComponent } from './components/email-confirmation-layout/email-confirmation-layout.component';
 import { GuestLayoutComponent } from './components/guest-layout/guest-layout.component';
 
 const routes: Routes = [
@@ -14,6 +15,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./../user-auth/user-auth.module').then(
         module => module.UserAuthModule,
+      ),
+  },
+  {
+    path: 'public',
+    component: EmailConfirmationLayoutComponent,
+    loadChildren: () =>
+      import('./../public-confirmation/public-confirmation.module').then(
+        module => module.PublicConfirmationModule,
       ),
   },
   {
