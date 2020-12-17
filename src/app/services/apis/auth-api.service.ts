@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { User } from '@fereji/models/user';
+import { CreateAccountModel } from '@fereji/models/users/create-account-model';
 import { LoginModel } from '@fereji/models/users/login-model';
 
 import { HttpService } from '../http/http.service';
@@ -29,7 +29,7 @@ export class AuthApiService {
    *
    * @param payload
    */
-  signup(payload: User) {
+  signup(payload: CreateAccountModel) {
     return this.http.makeRequest('POST', 'user/', {
       body: payload,
     });

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '@fereji/models/user';
 
+import { CreateAccountModel } from '@fereji/models/users/create-account-model';
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
 
 @Component({
@@ -29,7 +29,8 @@ export class SignUpComponent implements OnInit {
       username: ['', [Validators.required]],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
-      organization: ['', []],
+      password: ['', [Validators.required]],
+      confirm_password: ['', [Validators.required]],
     });
   }
 
@@ -37,10 +38,9 @@ export class SignUpComponent implements OnInit {
     this.showSpinner = true;
     this.showError = false;
 
-    if (this.authForm.invalid) {
+    if (this.formValidation()) {
       this.showError = true;
       this.showSpinner = false;
-      this.errorMessage = 'All field are required';
       return;
     }
 
@@ -61,15 +61,26 @@ export class SignUpComponent implements OnInit {
     });
   }
 
+  formValidation() {
+    if (this.authForm.invalid) {
+      this.errorMessage = 'All field are required';
+      return true;
+    }
+
+    if (this.authForm.value.password !== this.authForm.value.confirm_password) {
+      this.errorMessage = 'Password dont match';
+      return true;
+    }
+    return false;
+  }
+
   preparePayload() {
-    const payload: User = {
+    const payload: CreateAccountModel = {
       email: this.authForm.value.email,
-      organization: this.authForm.value.organization,
+      password: this.authForm.value.password,
       username: this.authForm.value.username,
       first_name: this.authForm.value.first_name,
       last_name: this.authForm.value.last_name,
-      groups: [],
-      user_permissions: [],
     };
     return payload;
   }
