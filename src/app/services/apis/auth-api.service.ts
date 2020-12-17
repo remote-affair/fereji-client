@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import { ConfirmationModel } from '@fereji/models/shared/confirmation-model';
 import { CreateAccountModel } from '@fereji/models/users/create-account-model';
 import { LoginModel } from '@fereji/models/users/login-model';
 
@@ -33,5 +34,18 @@ export class AuthApiService {
     return this.http.makeRequest('POST', 'user/', {
       body: payload,
     });
+  }
+
+  /**
+   * @description
+   * Sign up confirmation
+   *
+   * @param payload
+   */
+  signupConfirmation(payload: ConfirmationModel) {
+    return this.http.makeRequest(
+      'GET',
+      'user/auth/activate-account/' + payload.uuid + '/' + payload.token + '/',
+    );
   }
 }

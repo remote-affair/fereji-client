@@ -1,1 +1,2 @@
-<frj-app-loader [visible]="true"></frj-app-loader>
+<frj-form-error [error]="errorMessage" *ngIf="showError"></frj-form-error>
+<frj-app-loader [visible]="showLoader"></frj-app-loader>
