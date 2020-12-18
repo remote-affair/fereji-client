@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ConfirmationModel } from '@fereji/models/shared/confirmation-model';
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
 import { TokenConfirmationModel } from '@fereji/models/shared/token-confirmation-model';
+import { TokenStorageService } from '@fereji/services/token-storage/token-storage.service';
 
 @Component({
   selector: 'frj-password-recovery-confirmation',
@@ -22,14 +23,17 @@ export class PasswordRecoveryConfirmationComponent implements OnInit {
     private aas: AuthApiService,
     private router: Router,
     private toastr: ToastrService,
+    private tss: TokenStorageService,
   ) {}
 
   ngOnInit(): void {
     //get uuid
-    this.getUuid();
+    this.getToken();
   }
-  getUuid() {
+
+  getToken() {
     const token = this.ar.snapshot.queryParamMap.get('token') + '';
+    this.tss.savePasswordRecoveryToken(token);
     this.emailConfirmation(token);
   }
 

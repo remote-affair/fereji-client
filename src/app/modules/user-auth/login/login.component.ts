@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
 
     const sub = this.aas.signin(this.authForm.value).subscribe({
       next: (res: any) => {
+        //save token to token storage service
         this.router.navigate(['/dashboard']);
         this.showSpinner = false;
         this.toastr.info('User successfully signed in', 'Login sucess');

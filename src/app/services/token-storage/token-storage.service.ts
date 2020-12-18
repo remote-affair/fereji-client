@@ -9,6 +9,7 @@ import { User } from '@fereji/models/user';
 export class TokenStorageService {
   private readonly TOKEN_KEY = 'token';
   private readonly USER_KEY = 'user';
+  private readonly PASSWORD_RECOVERY_TOKEN_KEY = 'password_recovert_token';
 
   constructor() {}
 
@@ -29,6 +30,35 @@ export class TokenStorageService {
    */
   getToken(): Token {
     let token: any = localStorage.getItem(this.TOKEN_KEY);
+    try {
+      token = JSON.parse(token) || null;
+    } catch (error) {
+      token = null;
+    }
+
+    return token;
+  }
+
+  /**
+   * Saves password recovery token to localStorage
+   *
+   * @param token the token to be saved
+   */
+  savePasswordRecoveryToken(token: string) {
+    localStorage.removeItem(this.PASSWORD_RECOVERY_TOKEN_KEY);
+    localStorage.setItem(
+      this.PASSWORD_RECOVERY_TOKEN_KEY,
+      JSON.stringify(token),
+    );
+  }
+
+  /**
+   * Retrieves password recovery token from the localStorage
+   *
+   * @returns the retrieved token
+   */
+  getPasswordRecoveryToken(): string {
+    let token: any = localStorage.getItem(this.PASSWORD_RECOVERY_TOKEN_KEY);
     try {
       token = JSON.parse(token) || null;
     } catch (error) {

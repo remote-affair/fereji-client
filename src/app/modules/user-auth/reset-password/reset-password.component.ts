@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ResetPasswordModel } from '@fereji/models/users/reset-password-model';
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
+import { TokenStorageService } from '@fereji/services/token-storage/token-storage.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -23,6 +24,7 @@ export class ResetPasswordComponent implements OnInit {
     private aas: AuthApiService,
     private router: Router,
     private toastr: ToastrService,
+    private tss: TokenStorageService,
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +50,7 @@ export class ResetPasswordComponent implements OnInit {
 
     const payload: ResetPasswordModel = {
       pasword: this.authForm.value.password,
-      token: '',
+      token: this.tss.getPasswordRecoveryToken(),
     };
 
     const sub = this.aas.resetPassword(payload).subscribe({
