@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ForgotPasswordComponent implements OnInit {
   title = 'Forgot Password';
-  authForm: FormGroup = new FormGroup({});
+  authForm!: FormGroup;
 
   constructor(private fb: FormBuilder) {}
 

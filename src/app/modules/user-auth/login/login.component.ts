@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'frj-login',
@@ -14,9 +16,14 @@ export class LoginComponent implements OnInit {
   showError = false;
 
   title = 'Sign In';
-  authForm: FormGroup = new FormGroup({});
+  authForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private aas: AuthApiService) {}
+  constructor(
+    private fb: FormBuilder,
+    private aas: AuthApiService,
+    private router: Router,
+    private toastr: ToastrService,
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -42,12 +49,12 @@ export class LoginComponent implements OnInit {
 
     const sub = this.aas.signin(this.authForm.value).subscribe({
       next: (res: any) => {
-        console.log(res);
+        this.router.navigate(['/dashboard']);
         this.showSpinner = false;
+        this.toastr.info('User successfully signed in', 'Login sucess');
       },
       error: (error: any) => {
-        console.log(error);
-        this.errorMessage = error.statusText;
+        this.errorMessage = error.error.error;
         this.showSpinner = false;
         this.showError = true;
       },

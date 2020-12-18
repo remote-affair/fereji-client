@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ResetPasswordComponent implements OnInit {
   title = 'Set / Reset password';
-  authForm: FormGroup = new FormGroup({});
+  authForm!: FormGroup;
 
   constructor(private fb: FormBuilder) {}
 
