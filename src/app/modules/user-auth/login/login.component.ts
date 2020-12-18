@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthApiService } from '@fereji/services/apis/auth-api.service';
 import { ToastrService } from 'ngx-toastr';
+
+import { AuthApiService } from '@fereji/services/apis/auth-api.service';
 
 @Component({
   selector: 'frj-login',
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
 
     const sub = this.aas.signin(this.authForm.value).subscribe({
       next: (res: any) => {
+        //save token to token storage service
         this.router.navigate(['/dashboard']);
         this.showSpinner = false;
         this.toastr.info('User successfully signed in', 'Login sucess');
