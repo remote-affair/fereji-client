@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   showError = false;
 
   title = 'Sign In';
-  authForm: FormGroup = new FormGroup({});
+  authForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,

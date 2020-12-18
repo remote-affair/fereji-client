@@ -18,7 +18,7 @@ export class SignUpComponent implements OnInit {
   showError = false;
 
   title = 'Create User Account';
-  authForm: FormGroup = new FormGroup({});
+  authForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
