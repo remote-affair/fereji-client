@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ConfirmationModel } from '@fereji/models/shared/confirmation-model';
 import { CreateAccountModel } from '@fereji/models/users/create-account-model';
 import { LoginModel } from '@fereji/models/users/login-model';
+import { PasswordResetRequest } from '@fereji/models/users/password-reset-request';
 
 import { HttpService } from '../http/http.service';
 
@@ -47,5 +48,17 @@ export class AuthApiService {
       'GET',
       'user/auth/activate-account/' + payload.uuid + '/' + payload.token + '/',
     );
+  }
+
+  /**
+   * @description
+   * Forgot password request : client user
+   *
+   * @param payload
+   */
+  forgotPassword(payload: PasswordResetRequest) {
+    return this.http.makeRequest('POST', 'user/password_reset/', {
+      body: payload,
+    });
   }
 }
