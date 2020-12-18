@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthApiService } from '@fereji/services/apis/auth-api.service';
 import { ToastrService } from 'ngx-toastr';
+
+import { AuthApiService } from '@fereji/services/apis/auth-api.service';
 
 @Component({
   selector: 'frj-login',
