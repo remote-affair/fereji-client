@@ -1,0 +1,12 @@
+:host {
+  height: 100%;
+}
+
+.app-login {
+  &-container {
+    background-color: #ffffff;
+    border: 2px solid #d6d6dc;
+    padding: 28px;
+    width: 100%;
+  }
+}

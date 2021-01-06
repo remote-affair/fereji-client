@@ -1,23 +1,9 @@
 <div class="main-container">
   <frj-header></frj-header>
-
-  <main class="content-container clr-display-flex clr-flex-grow-1">
-    <div class="content-area">
-      <div class="row">
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4"></div>
-        <div
-          class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 auth-form-container-div"
-        >
-          <div class="row auth-form-container-row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-              <router-outlet></router-outlet>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4"></div>
-      </div>
-    </div>
-  </main>
-
+  <div class="content-container">
+    <main class="content-area">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
   <frj-footer></frj-footer>
 </div>
