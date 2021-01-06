@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { LayoutModule } from '../../layout.module';
 
 import { EmailConfirmationLayoutComponent } from './email-confirmation-layout.component';
 
@@ -9,6 +11,7 @@ describe('EmailConfirmationLayoutComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EmailConfirmationLayoutComponent],
+      imports: [RouterTestingModule, LayoutModule],
     }).compileComponents();
   });
 

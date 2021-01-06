@@ -1,13 +1,13 @@
 {
   "name": "fereji",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
-    "dev": "ng serve",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
+    "serve:prod": "node server.js",
+    "test:headless": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -70,7 +70,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && ng lint && npm run test-headless",
+      "pre-commit": "pretty-quick --staged && ng lint && npm run test:headless",
       "pre-push": "ng build --aot true"
     }
   }
