@@ -3,31 +3,27 @@
   [(clrVerticalNavCollapsed)]="collapsed"
   class="nav-trigger--bottom"
 >
-  <a clrVerticalNavLink routerLink="./normal" routerLinkActive="active">
-    <clr-icon clrVerticalNavIcon shape="user"></clr-icon>
-    Normal
+  <a clrVerticalNavLink routerLink="/dashboard" routerLinkActive="active">
+    <clr-icon clrVerticalNavIcon shape="dashboard"></clr-icon>
+    Dashboard
   </a>
-  <a clrVerticalNavLink routerLink="./electric" routerLinkActive="active">
-    <clr-icon clrVerticalNavIcon shape="bolt"></clr-icon>
-    Electric
-  </a>
-  <a clrVerticalNavLink routerLink="./poison" routerLinkActive="active">
-    <clr-icon clrVerticalNavIcon shape="sad-face"></clr-icon>
-    Poison
-  </a>
-  <a clrVerticalNavLink routerLink="./grass" routerLinkActive="active">
-    <clr-icon clrVerticalNavIcon shape="bug"></clr-icon>
-    Grass
-  </a>
-  <a clrVerticalNavLink routerLink="./fighting" routerLinkActive="active">
-    <clr-icon clrVerticalNavIcon shape="shield"></clr-icon>
-    Fighting
+  <a
+    clrVerticalNavLink
+    routerLink="/dashboard/data-sources"
+    routerLinkActive="active"
+  >
+    <clr-icon clrVerticalNavIcon shape="data-cluster"></clr-icon>
+    Data Sources
   </a>
 
   <div class="nav-divider"></div>
 
-  <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">
-    <clr-icon clrVerticalNavIcon shape="certificate"></clr-icon>
-    Credit
+  <a
+    clrVerticalNavLink
+    routerLink="/settings/preferences"
+    routerLinkActive="active"
+  >
+    <clr-icon clrVerticalNavIcon shape="cog"></clr-icon>
+    Preferences
   </a>
 </clr-vertical-nav>

@@ -5,7 +5,11 @@ import { RouterModule } from '@angular/router';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ClrIconModule, ClrVerticalNavModule } from '@clr/angular';
+import {
+  ClrDropdownModule,
+  ClrIconModule,
+  ClrVerticalNavModule,
+} from '@clr/angular';
 
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -32,6 +36,7 @@ import { EmailConfirmationLayoutComponent } from './components/email-confirmatio
     RouterModule,
     ClrIconModule,
     ClrVerticalNavModule,
+    ClrDropdownModule,
   ],
 })
 export class LayoutModule {}

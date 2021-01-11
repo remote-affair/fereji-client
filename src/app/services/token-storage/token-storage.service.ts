@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Token } from '@fereji/models/token';
 import { User } from '@fereji/models/user';
@@ -11,7 +12,7 @@ export class TokenStorageService {
   private readonly USER_KEY = 'user';
   private readonly PASSWORD_RECOVERY_TOKEN_KEY = 'password_recovert_token';
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   /**
    * Saves the given token to localStorage
@@ -84,10 +85,22 @@ export class TokenStorageService {
     localStorage.setItem(this.USER_KEY, JSON.stringify(user));
   }
 
+  getUser(): User {
+    let user: any = localStorage.getItem(this.USER_KEY);
+
+    try {
+      user = JSON.parse(user) || null;
+    } catch (error) {
+      user = null;
+    }
+    return user;
+  }
+
   /**
    * Clears localStorage
    */
   signOut() {
     localStorage.clear();
+    this.router.navigate(['/users/login']);
   }
 }
