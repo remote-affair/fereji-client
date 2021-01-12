@@ -10,6 +10,7 @@ describe('DashboardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent],
+      imports: [ClrIconModule],
     }).compileComponents();
   });
 

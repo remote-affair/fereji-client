@@ -11,6 +11,12 @@ import { FormErrorModule } from '@fereji/modules/shared/form-error/form-error.mo
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
 
 import { LoginComponent } from './login.component';
+import {
+  ClrIconModule,
+  ClrInputModule,
+  ClrLoadingModule,
+  ClrPasswordModule,
+} from '@clr/angular';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -27,6 +33,10 @@ describe('LoginComponent', () => {
         FormErrorModule,
         HttpClientModule,
         ToastrModule.forRoot(),
+        ClrInputModule,
+        ClrLoadingModule,
+        ClrIconModule,
+        ClrPasswordModule,
       ],
       providers: [AuthApiService, ToastrService],
     }).compileComponents();

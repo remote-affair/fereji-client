@@ -11,6 +11,7 @@ import { FormErrorModule } from '@fereji/modules/shared/form-error/form-error.mo
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
 
 import { ForgotPasswordComponent } from './forgot-password.component';
+import { ClrInputModule, ClrLoadingModule } from '@clr/angular';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
@@ -27,6 +28,8 @@ describe('ForgotPasswordComponent', () => {
         FormErrorModule,
         ToastrModule.forRoot(),
         HttpClientModule,
+        ClrInputModule,
+        ClrLoadingModule,
       ],
       providers: [ToastrService, AuthApiService],
     }).compileComponents();
