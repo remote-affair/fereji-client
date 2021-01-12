@@ -8,6 +8,12 @@ import { FormErrorModule } from '@fereji/modules/shared/form-error/form-error.mo
 import { ButtonSpinnerModule } from '@fereji/modules/shared/button-spinner/button-spinner.module';
 
 import { ForgotPasswordComponent } from './forgot-password.component';
+import {
+  ClrAlertModule,
+  ClrInputModule,
+  ClrLoadingModule,
+  ClrPasswordModule,
+} from '@clr/angular';
 
 @NgModule({
   declarations: [ForgotPasswordComponent],
@@ -18,6 +24,9 @@ import { ForgotPasswordComponent } from './forgot-password.component';
     TopOffsetTitleModule,
     FormErrorModule,
     ButtonSpinnerModule,
+    ClrInputModule,
+    ClrLoadingModule,
+    ClrAlertModule,
   ],
 })
 export class ForgotPasswordModule {}

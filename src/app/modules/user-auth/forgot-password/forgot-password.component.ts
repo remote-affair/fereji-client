@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
+import { ClrLoadingState } from '@clr/angular';
 
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'frj-forgot-password',
@@ -12,9 +14,10 @@ import { AuthApiService } from '@fereji/services/apis/auth-api.service';
   styleUrls: ['./forgot-password.component.scss'],
 })
 export class ForgotPasswordComponent implements OnInit {
-  showSpinner = false;
+  showSpinner = ClrLoadingState.DEFAULT;
   errorMessage = '';
   showError = false;
+  showSuccess = false;
 
   title = 'Forgot Password';
   authForm!: FormGroup;
@@ -23,7 +26,7 @@ export class ForgotPasswordComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
-    private aas: AuthApiService,
+    private authService: AuthApiService,
   ) {}
 
   ngOnInit(): void {
@@ -37,33 +40,28 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   forgotPassword() {
-    this.showSpinner = true;
+    this.showSpinner = ClrLoadingState.LOADING;
     this.showError = false;
+    this.showSuccess = false;
 
-    if (this.authForm.invalid) {
-      this.showError = true;
-      this.showSpinner = false;
-      this.errorMessage = 'Username is required';
-      return;
+    if (this.authForm.valid) {
+      const sub = this.authService
+        .forgotPassword(this.authForm.value)
+        .pipe(delay(5000))
+        .subscribe({
+          next: (res: any) => {
+            this.showSuccess = true;
+            this.showSpinner = ClrLoadingState.SUCCESS;
+          },
+          error: (err: any) => {
+            this.errorMessage = err.error.detail;
+            this.showError = true;
+            this.showSpinner = ClrLoadingState.ERROR;
+          },
+          complete: () => {
+            sub.unsubscribe();
+          },
+        });
     }
-
-    const sub = this.aas.forgotPassword(this.authForm.value).subscribe({
-      next: (res: any) => {
-        this.router.navigate(['/users/login']);
-        this.showSpinner = false;
-        this.toastr.info(
-          'Check your email for the account reset link',
-          'Success',
-        );
-      },
-      error: (error: any) => {
-        this.errorMessage = error.error.error;
-        this.showSpinner = false;
-        this.showError = true;
-      },
-      complete: () => {
-        sub.unsubscribe();
-      },
-    });
   }
 }
