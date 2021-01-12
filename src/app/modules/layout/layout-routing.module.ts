@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from '@fereji/guards/auth/auth.guard';
+import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 
 import { DashboardLayoutComponent } from './components/dashboard-layout/dashboard-layout.component';
 import { EmailConfirmationLayoutComponent } from './components/email-confirmation-layout/email-confirmation-layout.component';
-import { GuestLayoutComponent } from './components/guest-layout/guest-layout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   {
     path: 'users',
-    component: GuestLayoutComponent,
+    component: AuthLayoutComponent,
     loadChildren: () =>
       import('./../user-auth/user-auth.module').then(
         module => module.UserAuthModule,

@@ -17,6 +17,7 @@ import { DashboardLayoutComponent } from './components/dashboard-layout/dashboar
 import { GuestLayoutComponent } from './components/guest-layout/guest-layout.component';
 import { AsideComponent } from './components/aside/aside.component';
 import { EmailConfirmationLayoutComponent } from './components/email-confirmation-layout/email-confirmation-layout.component';
+import { AuthLayoutComponent } from './components/auth-layout/auth-layout.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { EmailConfirmationLayoutComponent } from './components/email-confirmatio
     DashboardLayoutComponent,
     AsideComponent,
     EmailConfirmationLayoutComponent,
+    AuthLayoutComponent,
   ],
   imports: [
     CommonModule,

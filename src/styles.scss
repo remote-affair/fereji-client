@@ -5,3 +5,15 @@
 .w-100 {
   width: 100% !important;
 }
+
+.login-wrapper {
+  min-height: unset;
+  background: unset;
+  border: unset;
+
+  .login {
+    min-height: 100%;
+    height: 100%;
+    border: 2px solid #dfdfdf;
+  }
+}
