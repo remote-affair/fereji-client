@@ -1,58 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  display: flex;
-  flex-direction: column;
+.h-100 {
+  height: 100% !important;
 }
 
-.clr-display-flex {
-  display: flex !important;
-}
-
-.form-control {
-  border-radius: 0rem;
-}
-
-.custom-auth-btn {
-  background-color: #00364d;
-  color: #ffffff;
-  width: 100%;
-  max-width: 100%;
-  border-radius: 0px;
-}
-
-.custom-auth-btn:hover {
-  background-color: #005980;
-  color: #ffffff;
-}
-
-.footer-auth-row {
-  margin-bottom: 10px;
-}
-
-.left-auth-footer {
-  text-align: right;
-  border-right: 1px solid #00364d;
-}
-
-.right-auth-footer {
-  text-align: left;
-  border-left: 1px solid #00364d;
-}
-
-.single-auth-footer {
-  text-align: center;
-}
-
-.footer-auth-row a {
-  text-decoration: none;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #00364d;
+.w-100 {
+  width: 100% !important;
 }

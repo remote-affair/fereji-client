@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { ToastrService } from 'ngx-toastr';
+import { ClrLoadingState } from '@clr/angular';
 
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
 import { TokenStorageService } from '@fereji/services/token-storage/token-storage.service';
@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
 
   title = 'Sign In';
   authForm!: FormGroup;
+  submitBtnState: ClrLoadingState = ClrLoadingState.DEFAULT;
 
   constructor(
     private fb: FormBuilder,
-    private aas: AuthApiService,
+    private authService: AuthApiService,
     private router: Router,
-    private toastr: ToastrService,
     private tokenService: TokenStorageService,
   ) {}
 
@@ -43,32 +43,30 @@ export class LoginComponent implements OnInit {
     this.showSpinner = true;
     this.showError = false;
 
-    if (this.authForm.invalid) {
-      this.showError = true;
-      this.showSpinner = false;
-      this.errorMessage = 'All field are required';
-      return;
+    if (this.authForm.valid) {
+      this.submitBtnState = ClrLoadingState.LOADING;
+
+      const sub = this.authService.signin(this.authForm.value).subscribe({
+        next: res => {
+          const { user, token } = res;
+          this.tokenService.saveToken(token);
+          this.tokenService.saveUser(user);
+          this.submitBtnState = ClrLoadingState.SUCCESS;
+
+          this.router.navigate(['/dashboard']);
+        },
+
+        error: () => {
+          this.showError = true;
+          this.submitBtnState = ClrLoadingState.ERROR;
+        },
+
+        complete: () => {
+          if (sub) {
+            sub.unsubscribe();
+          }
+        },
+      });
     }
-
-    const sub = this.aas.signin(this.authForm.value).subscribe({
-      next: (res: any) => {
-        //save token to token storage service
-        const { user, token } = res;
-        this.tokenService.saveToken(token);
-        this.tokenService.saveUser(user);
-
-        this.router.navigate(['/dashboard']);
-        this.showSpinner = false;
-        this.toastr.info('User successfully signed in', 'Login sucess');
-      },
-      error: (error: any) => {
-        this.errorMessage = error.error.error;
-        this.showSpinner = false;
-        this.showError = true;
-      },
-      complete: () => {
-        sub.unsubscribe();
-      },
-    });
   }
 }

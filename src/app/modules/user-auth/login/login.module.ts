@@ -8,6 +8,13 @@ import { ButtonSpinnerModule } from '@fereji/modules/shared/button-spinner/butto
 import { FormErrorModule } from '@fereji/modules/shared/form-error/form-error.module';
 
 import { LoginComponent } from './login.component';
+import {
+  ClrCommonFormsModule,
+  ClrFormsModule,
+  ClrInputModule,
+  ClrLoadingButtonModule,
+  ClrLoadingModule,
+} from '@clr/angular';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -18,6 +25,11 @@ import { LoginComponent } from './login.component';
     RouterModule,
     ButtonSpinnerModule,
     FormErrorModule,
+    ClrFormsModule,
+    ClrCommonFormsModule,
+    ClrInputModule,
+    ClrLoadingButtonModule,
+    ClrLoadingModule,
   ],
   exports: [LoginComponent],
 })
