@@ -53,9 +53,8 @@ export class LoginComponent implements OnInit {
           this.tokenService.saveUser(user);
           this.submitBtnState = ClrLoadingState.SUCCESS;
 
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/data']);
         },
-
         error: () => {
           this.showError = true;
           this.submitBtnState = ClrLoadingState.ERROR;

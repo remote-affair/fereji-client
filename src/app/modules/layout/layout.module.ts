@@ -6,6 +6,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
+  ClrAlertModule,
   ClrDropdownModule,
   ClrIconModule,
   ClrVerticalNavModule,
@@ -39,6 +40,7 @@ import { AuthLayoutComponent } from './components/auth-layout/auth-layout.compon
     ClrIconModule,
     ClrVerticalNavModule,
     ClrDropdownModule,
+    ClrAlertModule,
   ],
 })
 export class LayoutModule {}

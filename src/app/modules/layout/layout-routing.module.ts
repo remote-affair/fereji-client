@@ -8,7 +8,7 @@ import { DashboardLayoutComponent } from './components/dashboard-layout/dashboar
 import { EmailConfirmationLayoutComponent } from './components/email-confirmation-layout/email-confirmation-layout.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'data', pathMatch: 'full' },
   {
     path: 'users',
     component: AuthLayoutComponent,
@@ -26,7 +26,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'dashboard',
+    path: 'data',
     component: DashboardLayoutComponent,
     canActivate: [AuthGuard],
     loadChildren: () =>
