@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { CreateAccountModel } from '@fereji/models/users/create-account-model';
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
+import { ClrLoadingState } from '@clr/angular';
 
 @Component({
   selector: 'frj-sign-up',
@@ -13,9 +14,10 @@ import { AuthApiService } from '@fereji/services/apis/auth-api.service';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-  showSpinner = false;
+  showSpinner = ClrLoadingState.DEFAULT;
   errorMessage = '';
   showError = false;
+  showSuccess = false;
 
   title = 'Create User Account';
   authForm!: FormGroup;
@@ -34,65 +36,40 @@ export class SignUpComponent implements OnInit {
   initForm() {
     this.authForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      username: ['', [Validators.required]],
+      username: [''],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      confirm_password: ['', [Validators.required]],
     });
   }
 
   signup() {
-    this.showSpinner = true;
     this.showError = false;
+    this.showSuccess = false;
 
-    if (this.formValidation()) {
-      this.showError = true;
-      this.showSpinner = false;
-      return;
+    if (this.authForm.valid) {
+      this.showSpinner = ClrLoadingState.LOADING;
+
+      const payload = {
+        ...this.authForm.value,
+        username: this.authForm.value.email,
+      };
+
+      const sub = this.aas.signup(payload).subscribe({
+        next: (res: any) => {
+          this.showSpinner = ClrLoadingState.SUCCESS;
+          // this.router.navigate(['/users/login']);
+          this.showSuccess = true;
+        },
+        error: (error: any) => {
+          this.errorMessage = error.error.error;
+          this.showSpinner = ClrLoadingState.ERROR;
+          this.showError = true;
+        },
+        complete: () => {
+          sub.unsubscribe();
+        },
+      });
     }
-
-    const sub = this.aas.signup(this.preparePayload()).subscribe({
-      next: (res: any) => {
-        this.showSpinner = false;
-        this.toastr.info(
-          'Account successfully created. Check your email for the confirmation link',
-          'Success',
-        );
-        this.router.navigate(['/users/login']);
-      },
-      error: (error: any) => {
-        this.errorMessage = error.statusText;
-        this.showSpinner = false;
-        this.showError = true;
-      },
-      complete: () => {
-        sub.unsubscribe();
-      },
-    });
-  }
-
-  formValidation() {
-    if (this.authForm.invalid) {
-      this.errorMessage = 'All field are required';
-      return true;
-    }
-
-    if (this.authForm.value.password !== this.authForm.value.confirm_password) {
-      this.errorMessage = 'Password dont match';
-      return true;
-    }
-    return false;
-  }
-
-  preparePayload() {
-    const payload: CreateAccountModel = {
-      email: this.authForm.value.email,
-      password: this.authForm.value.password,
-      username: this.authForm.value.username,
-      first_name: this.authForm.value.first_name,
-      last_name: this.authForm.value.last_name,
-    };
-    return payload;
   }
 }

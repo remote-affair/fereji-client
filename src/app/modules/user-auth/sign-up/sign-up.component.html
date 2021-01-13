@@ -95,24 +95,87 @@
   </div>
 </div> -->
 
-<div class="clr-row">
-  <div
-    class="clr-col-lg-6 clr-col-md-6 clr-offset-lg-3 clr-offset-md-3 clr-col-12"
-  >
-    <div class="card">
-      <!-- <div class="card-header">Create your account</div> -->
-      <div class="card-block">
-        <div class="card-title">Create your account</div>
-        <div class="card-text">...</div>
-      </div>
-      <div class="card-footer">
-        <a
-          role="button"
-          routerLink="/users/create-account"
-          class="btn btn-sm btn-link"
-          >Login</a
-        >
-      </div>
+<form
+  clrForm
+  class="login"
+  clrLayout="vertical"
+  [formGroup]="authForm"
+  (submit)="signup()"
+>
+  <section class="title">
+    Signup
+
+    <h5 class="hint">Create your account to start working on your data</h5>
+  </section>
+
+  <div class="login-group">
+    <clr-input-container>
+      <label class="clr-sr-only">First Name</label>
+      <input
+        type="text"
+        name="firstName"
+        clrInput
+        placeholder="First name"
+        formControlName="first_name"
+      />
+    </clr-input-container>
+
+    <clr-input-container>
+      <label class="clr-sr-only">Last Name</label>
+      <input
+        type="text"
+        name="lastName"
+        clrInput
+        placeholder="Last name"
+        formControlName="last_name"
+      />
+    </clr-input-container>
+
+    <clr-input-container>
+      <label class="clr-sr-only">Email address</label>
+      <input
+        type="text"
+        name="emailAddress"
+        clrInput
+        placeholder="Email address"
+        formControlName="email"
+      />
+    </clr-input-container>
+
+    <clr-password-container>
+      <label class="clr-sr-only">Password</label>
+      <input
+        type="password"
+        name="password"
+        clrPassword
+        placeholder="Password"
+        formControlName="password"
+      />
+    </clr-password-container>
+
+    <div class="error active" *ngIf="showError">
+      {{ errorMessage }}
+    </div>
+
+    <button
+      type="submit"
+      [clrLoading]="showSpinner"
+      class="btn btn-outline-primary"
+    >
+      Submit
+    </button>
+    <div class="signup">
+      Already have an account?
+      <a routerLink="/users/login"> Login here </a>
     </div>
   </div>
-</div>
+
+  <clr-alert [clrAlertType]="'success'" *ngIf="showSuccess">
+    <clr-alert-item>
+      <span class="alert-text">
+        Account successfully created. Check your email for the confirmation
+        link.
+      </span>
+    </clr-alert-item>
+  </clr-alert>
+</form>

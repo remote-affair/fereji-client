@@ -11,6 +11,13 @@ import { FormErrorModule } from '@fereji/modules/shared/form-error/form-error.mo
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
 
 import { SignUpComponent } from './sign-up.component';
+import {
+  ClrInputModule,
+  ClrLoadingButtonModule,
+  ClrLoadingModule,
+  ClrPasswordModule,
+} from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SignUpComponent', () => {
   let component: SignUpComponent;
@@ -27,6 +34,11 @@ describe('SignUpComponent', () => {
         ButtonSpinnerModule,
         HttpClientModule,
         ToastrModule.forRoot(),
+        ClrInputModule,
+        ClrPasswordModule,
+        ClrLoadingModule,
+        ClrLoadingButtonModule,
+        BrowserAnimationsModule,
       ],
       providers: [AuthApiService, ToastrService],
     }).compileComponents();

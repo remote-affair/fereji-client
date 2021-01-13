@@ -8,6 +8,14 @@ import { FormErrorModule } from '@fereji/modules/shared/form-error/form-error.mo
 import { ButtonSpinnerModule } from '@fereji/modules/shared/button-spinner/button-spinner.module';
 
 import { SignUpComponent } from './sign-up.component';
+import {
+  ClrAlertModule,
+  ClrInputModule,
+  ClrLoadingButtonModule,
+  ClrLoadingModule,
+  ClrPasswordModule,
+} from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [SignUpComponent],
@@ -18,6 +26,11 @@ import { SignUpComponent } from './sign-up.component';
     TopOffsetTitleModule,
     FormErrorModule,
     ButtonSpinnerModule,
+    ClrInputModule,
+    ClrPasswordModule,
+    ClrLoadingModule,
+    ClrLoadingButtonModule,
+    ClrAlertModule,
   ],
   exports: [SignUpComponent],
 })
