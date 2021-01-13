@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ClrLoadingState } from '@clr/angular';
 import { ResetPasswordModel } from '@fereji/models/users/reset-password-model';
 import { AuthApiService } from '@fereji/services/apis/auth-api.service';
 import { TokenStorageService } from '@fereji/services/token-storage/token-storage.service';
@@ -12,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./reset-password.component.scss'],
 })
 export class ResetPasswordComponent implements OnInit {
-  showSpinner = false;
+  showSpinner = ClrLoadingState.DEFAULT;
   errorMessage = '';
   showError = false;
 
@@ -34,43 +35,42 @@ export class ResetPasswordComponent implements OnInit {
   initForm() {
     this.authForm = this.fb.group({
       password: ['', [Validators.required]],
-      confirm_password: ['', [Validators.required]],
     });
   }
 
+  /**
+   * @todo Make sure this is working
+   * For example, this component should not be loaded if the url does not have a token
+   */
   resetPassword() {
-    this.showSpinner = true;
+    this.showSpinner = ClrLoadingState.LOADING;
     this.showError = false;
 
-    if (this.formValidation()) {
-      this.showError = true;
-      this.showSpinner = false;
-      return;
+    if (this.authForm.valid) {
+      const payload: ResetPasswordModel = {
+        pasword: this.authForm.value.password,
+        token: this.tss.getPasswordRecoveryToken() || 'some-token',
+      };
+
+      const sub = this.aas.resetPassword(payload).subscribe({
+        next: (res: any) => {
+          this.router.navigate(['/users/login']);
+          this.showSpinner = ClrLoadingState.SUCCESS;
+          this.toastr.info(
+            'Password reset was successful',
+            'Password Reset Sucess',
+          );
+        },
+        error: (error: any) => {
+          this.errorMessage = error.statusText; // show the exact error
+          this.showSpinner = ClrLoadingState.ERROR;
+          this.showError = true;
+        },
+        complete: () => {
+          sub.unsubscribe();
+        },
+      });
     }
-
-    const payload: ResetPasswordModel = {
-      pasword: this.authForm.value.password,
-      token: this.tss.getPasswordRecoveryToken(),
-    };
-
-    const sub = this.aas.resetPassword(payload).subscribe({
-      next: (res: any) => {
-        this.router.navigate(['/users/login']);
-        this.showSpinner = false;
-        this.toastr.info(
-          'Password reset was successful',
-          'Password Reset Sucess',
-        );
-      },
-      error: (error: any) => {
-        this.errorMessage = error.error.error;
-        this.showSpinner = false;
-        this.showError = true;
-      },
-      complete: () => {
-        sub.unsubscribe();
-      },
-    });
   }
 
   formValidation() {

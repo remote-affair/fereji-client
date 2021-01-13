@@ -11,6 +11,13 @@ import { ButtonSpinnerModule } from '@fereji/modules/shared/button-spinner/butto
 import { FormErrorModule } from '@fereji/modules/shared/form-error/form-error.module';
 
 import { ResetPasswordComponent } from './reset-password.component';
+import {
+  ClrInputModule,
+  ClrLoadingButtonModule,
+  ClrLoadingModule,
+  ClrPasswordModule,
+} from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ResetPasswordComponent', () => {
   let component: ResetPasswordComponent;
@@ -27,6 +34,10 @@ describe('ResetPasswordComponent', () => {
         FormErrorModule,
         HttpClientModule,
         ToastrModule.forRoot(),
+        ClrLoadingButtonModule,
+        ClrLoadingModule,
+        BrowserAnimationsModule,
+        ClrPasswordModule,
       ],
       providers: [AuthApiService, ToastrService],
     }).compileComponents();

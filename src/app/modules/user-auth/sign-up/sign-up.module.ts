@@ -15,7 +15,6 @@ import {
   ClrLoadingModule,
   ClrPasswordModule,
 } from '@clr/angular';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [SignUpComponent],

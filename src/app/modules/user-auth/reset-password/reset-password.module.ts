@@ -8,6 +8,12 @@ import { ButtonSpinnerModule } from '@fereji/modules/shared/button-spinner/butto
 import { FormErrorModule } from '@fereji/modules/shared/form-error/form-error.module';
 
 import { ResetPasswordComponent } from './reset-password.component';
+import {
+  ClrInputModule,
+  ClrLoadingButtonModule,
+  ClrLoadingModule,
+  ClrPasswordModule,
+} from '@clr/angular';
 
 @NgModule({
   declarations: [ResetPasswordComponent],
@@ -18,6 +24,10 @@ import { ResetPasswordComponent } from './reset-password.component';
     TopOffsetTitleModule,
     FormErrorModule,
     ButtonSpinnerModule,
+    ClrInputModule,
+    ClrPasswordModule,
+    ClrLoadingModule,
+    ClrLoadingButtonModule,
   ],
 })
 export class ResetPasswordModule {}
