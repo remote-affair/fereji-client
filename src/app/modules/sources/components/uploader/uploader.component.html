@@ -1,0 +1,21 @@
+<clr-modal [clrModalOpen]="visible" (clrModalOpenChange)="closed()">
+  <h3 class="modal-title">New Data Source</h3>
+
+  <div class="modal-body">
+    <form clrForm clrLayout="vertical" [formGroup]="uploaderForm">
+      <clr-input-container>
+        <label for="file">File</label>
+        <input clrInput type="file" formControlName="file" />
+      </clr-input-container>
+    </form>
+
+    <div class="modal-footer">
+      <button type="reset" class="btn btn-outline" (click)="closed()">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-primary" (click)="upload()">
+        Upload
+      </button>
+    </div>
+  </div>
+</clr-modal>

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClrIconModule, ClrVerticalNavModule } from '@clr/angular';
+import { UploaderModule } from '@fereji/modules/sources/components/uploader/uploader.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -10,7 +11,7 @@ describe('DashboardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DashboardComponent],
-      imports: [ClrIconModule],
+      imports: [ClrIconModule, UploaderModule],
     }).compileComponents();
   });
 
