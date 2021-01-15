@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sources-table.component.scss'],
 })
 export class SourcesTableComponent implements OnInit {
+  showUploader = false;
+
   constructor() {}
 
   ngOnInit(): void {}

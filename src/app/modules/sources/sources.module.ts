@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SourcesDashboardComponent } from './components/sources-dashboard/sources-dashboard.component';
+
+import { ClrIconModule } from '@clr/angular';
+
+import { SourcesRoutingModule } from './sources-routing.module';
 import { SourcesTableComponent } from './components/sources-table/sources-table.component';
+import { UploaderModule } from './components/uploader/uploader.module';
 
 @NgModule({
-  declarations: [SourcesDashboardComponent, SourcesTableComponent],
-  imports: [CommonModule],
+  declarations: [SourcesTableComponent],
+  imports: [CommonModule, SourcesRoutingModule, ClrIconModule, UploaderModule],
 })
 export class SourcesModule {}

@@ -128,7 +128,10 @@ export class AuthInterceptor implements HttpInterceptor {
    * @returns the manipulated request
    */
   private addContentType(request: HttpRequest<any>): HttpRequest<any> {
-    if (!request.headers.has('Content-Type')) {
+    if (
+      !request.headers.has('Content-Type') &&
+      !(request.body instanceof FormData)
+    ) {
       request = request.clone({
         headers: request.headers.set('Content-Type', 'application/json'),
       });

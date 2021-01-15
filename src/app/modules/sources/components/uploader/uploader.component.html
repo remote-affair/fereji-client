@@ -2,8 +2,26 @@
   <h3 class="modal-title">New Data Source</h3>
 
   <div class="modal-body">
-    <form class="clr-form" [formGroup]="uploaderForm">
-      <div class="clr-form-control">
+    <form clrForm clrLayout="horizontal" [formGroup]="uploaderForm">
+      <clr-select-container>
+        <label for="source">Source</label>
+        <select
+          clrSelect
+          id="source"
+          name="source"
+          required
+          formControlName="source"
+          aria-placeholder="Select Source"
+        >
+          <option *ngFor="let source of sources$ | async" [value]="source.id">
+            {{ source.name }}
+          </option>
+        </select>
+        <!-- <clr-control-helper>Helper text</clr-control-helper> -->
+        <!-- <clr-control-error>This field is required!</clr-control-error> -->
+      </clr-select-container>
+
+      <div class="clr-form-control app-uploader-file">
         <label for="basic-default" class="clr-control-label">File</label>
         <div class="clr-control-container">
           <div class="clr-file-wrapper">
@@ -11,7 +29,7 @@
               type="file"
               id="basic-default"
               placeholder="Enter value here"
-              accept=".csv,.xl*"
+              accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
               (change)="fileSelected($event)"
               required
             />

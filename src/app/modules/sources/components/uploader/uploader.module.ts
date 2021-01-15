@@ -6,6 +6,7 @@ import {
   ClrIconModule,
   ClrInputModule,
   ClrModalModule,
+  ClrSelectModule,
 } from '@clr/angular';
 
 import { UploaderComponent } from './uploader.component';
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ClrInputModule,
     ReactiveFormsModule,
     ClrIconModule,
+    ClrSelectModule,
   ],
   exports: [UploaderComponent],
 })

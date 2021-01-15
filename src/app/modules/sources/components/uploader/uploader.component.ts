@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { DataSiloService } from '@fereji/services/apis/data-silo/data-silo.service';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'frj-uploader',
   templateUrl: './uploader.component.html',
@@ -11,10 +14,15 @@ export class UploaderComponent implements OnInit {
   @Output() visibleChange = new EventEmitter<boolean>();
 
   uploaderForm!: FormGroup;
+  sources$!: Observable<Array<any>>;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly siloService: DataSiloService,
+  ) {}
 
   ngOnInit(): void {
+    this.setSources$();
     this.initForm();
   }
 
@@ -38,6 +46,28 @@ export class UploaderComponent implements OnInit {
   upload() {
     if (this.uploaderForm.valid) {
       console.log(this.uploaderForm.value);
+
+      const formData = new FormData();
+
+      Object.entries(this.uploaderForm.value).forEach(([name, value]) => {
+        formData.append(name, value as any);
+      });
+
+      console.log({ formData });
+
+      const sub = this.siloService.upload(formData).subscribe({
+        next: resp => {
+          console.log({ resp });
+        },
+        error: err => {
+          console.log({ err });
+        },
+        complete: () => {
+          if (sub) {
+            sub.unsubscribe();
+          }
+        },
+      });
     }
   }
 
@@ -46,6 +76,11 @@ export class UploaderComponent implements OnInit {
       file: [null, Validators.required],
       silo_name: ['', Validators.required],
       silo_label: [''],
+      source: [null, [Validators.required]],
     });
+  }
+
+  private setSources$() {
+    this.sources$ = this.siloService.getDataSourceTypes();
   }
 }
