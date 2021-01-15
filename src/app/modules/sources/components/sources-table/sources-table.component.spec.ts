@@ -1,7 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClrIconModule } from '@clr/angular';
+import {
+  ClrDatagridModule,
+  ClrDropdownModule,
+  ClrIconModule,
+} from '@clr/angular';
 
 import { UploaderModule } from '../uploader/uploader.module';
 import { SourcesTableComponent } from './sources-table.component';
@@ -13,7 +17,13 @@ describe('SourcesTableComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SourcesTableComponent],
-      imports: [UploaderModule, HttpClientModule, ClrIconModule],
+      imports: [
+        UploaderModule,
+        HttpClientModule,
+        ClrIconModule,
+        ClrDatagridModule,
+        ClrDropdownModule,
+      ],
     }).compileComponents();
   });
 

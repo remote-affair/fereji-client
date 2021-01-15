@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
+  ClrAlertModule,
   ClrFormsModule,
   ClrIconModule,
   ClrInputModule,
   ClrModalModule,
+  ClrPopoverModule,
   ClrSelectModule,
 } from '@clr/angular';
 
@@ -22,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     ClrIconModule,
     ClrSelectModule,
+    ClrAlertModule,
   ],
   exports: [UploaderComponent],
 })

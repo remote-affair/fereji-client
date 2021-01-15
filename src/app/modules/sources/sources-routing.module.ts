@@ -7,7 +7,10 @@ const routes: Routes = [
   { path: '', component: SourcesTableComponent },
   {
     path: ':uuid',
-    // children: [{ path: 'preview' }],
+    loadChildren: () =>
+      import('../source-details/source-details.module').then(
+        m => m.SourceDetailsModule,
+      ),
   },
 ];
 

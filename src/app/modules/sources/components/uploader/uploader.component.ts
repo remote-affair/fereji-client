@@ -15,6 +15,8 @@ export class UploaderComponent implements OnInit {
 
   uploaderForm!: FormGroup;
   sources$!: Observable<Array<any>>;
+  showError = false;
+  errorMessage = '';
 
   constructor(
     private readonly fb: FormBuilder,
@@ -34,18 +36,21 @@ export class UploaderComponent implements OnInit {
   fileSelected(event: any) {
     if (event.target.files.length) {
       const file = event.target.files[0];
-      console.log({ file });
 
-      this.uploaderForm.get('file')?.setValue(file);
-      this.uploaderForm.get('silo_name')?.setValue(file.name);
+      this.uploaderForm.patchValue({ file, silo_name: file.name });
     } else {
-      this.uploaderForm.get('file')?.reset();
+      this.uploaderForm.patchValue({ file: null, silo_name: '' });
     }
   }
 
   upload() {
     if (this.uploaderForm.valid) {
-      console.log(this.uploaderForm.value);
+      if (!this.uploaderForm.value.silo_label.trim()) {
+        const siloName = this.uploaderForm.get('silo_name')?.value || '';
+        this.uploaderForm.patchValue({
+          silo_label: siloName.split('.')[0].trim(),
+        });
+      }
 
       const formData = new FormData();
 
@@ -53,14 +58,13 @@ export class UploaderComponent implements OnInit {
         formData.append(name, value as any);
       });
 
-      console.log({ formData });
-
       const sub = this.siloService.upload(formData).subscribe({
         next: resp => {
           console.log({ resp });
         },
         error: err => {
-          console.log({ err });
+          this.showError = true;
+          this.errorMessage = err.statusText;
         },
         complete: () => {
           if (sub) {

@@ -16,6 +16,10 @@ export class DataSiloService {
     return this.http.makeRequest('GET', this.DATA_SOURCE_TYPES_ENDPOINT);
   }
 
+  getDataSilos() {
+    return this.http.makeRequest('GET', this.DATA_SILO_ENDPOINT);
+  }
+
   upload(payload: any) {
     return this.http.makeRequest('POST', this.DATA_SILO_ENDPOINT, {
       body: payload,

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SourcesDashboardComponent } from './sources-dashboard.component';
@@ -9,6 +10,7 @@ describe('SourcesDashboardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SourcesDashboardComponent],
+      imports: [HttpClientModule],
     }).compileComponents();
   });
 

@@ -2,6 +2,12 @@
   <h3 class="modal-title">New Data Source</h3>
 
   <div class="modal-body">
+    <clr-alert [clrAlertType]="'danger'" *ngIf="showError">
+      <clr-alert-item>
+        <span class="alert-text"> {{ errorMessage }} </span>
+      </clr-alert-item>
+    </clr-alert>
+
     <form clrForm clrLayout="horizontal" [formGroup]="uploaderForm">
       <clr-select-container>
         <label for="source">Source</label>
@@ -58,11 +64,11 @@
     </form>
 
     <div class="modal-footer">
-      <button type="reset" class="btn btn-outline" (click)="closed()">
+      <button type="button" class="btn btn-outline" (click)="closed()">
         Cancel
       </button>
       <button
-        type="submit"
+        type="button"
         class="btn btn-primary"
         [disabled]="uploaderForm.invalid"
         (click)="upload()"

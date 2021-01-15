@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataSiloService } from '@fereji/services/apis/data-silo/data-silo.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'frj-sources-dashboard',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sources-dashboard.component.scss'],
 })
 export class SourcesDashboardComponent implements OnInit {
-  constructor() {}
+  silos$!: Observable<Array<any>>;
 
-  ngOnInit(): void {}
+  constructor(private readonly siloService: DataSiloService) {}
+
+  ngOnInit(): void {
+    this.silos$ = this.siloService.getDataSilos();
+  }
 }

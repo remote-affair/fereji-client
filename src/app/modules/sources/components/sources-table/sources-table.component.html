@@ -1,5 +1,231 @@
 <button class="btn btn-primary" (click)="showUploader = true">
-  <clr-icon shape="upload"></clr-icon> Upload CSV Data
+  <clr-icon shape="upload"></clr-icon> Upload File
 </button>
+
+<clr-datagrid [(clrDgSelected)]="selected" [clrDgLoading]="fetching">
+  <clr-dg-action-bar>
+    <div class="btn-group">
+      <button
+        type="button"
+        class="btn btn-sm btn-secondary"
+        (click)="add($event)"
+      >
+        <clr-icon shape="plus"></clr-icon> Add to group
+      </button>
+      <button type="button" class="btn btn-sm btn-secondary" (click)="delete()">
+        <clr-icon shape="close"></clr-icon> Delete
+      </button>
+      <button
+        type="button"
+        class="btn btn-sm btn-secondary"
+        (click)="edit()"
+        *ngIf="selected?.length == 1"
+      >
+        <clr-icon shape="pencil"></clr-icon> Edit
+      </button>
+    </div>
+    <div class="btn-group">
+      <clr-dropdown>
+        <button
+          type="button"
+          class="btn btn-sm btn-secondary"
+          clrDropdownTrigger
+        >
+          Export
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+          <button type="button" (click)="exportAll()" clrDropdownItem>
+            Export All
+          </button>
+          <button
+            type="button"
+            (click)="exportSelected()"
+            [disabled]="selected?.length === 0"
+            clrDropdownItem
+          >
+            Export Selected Items
+          </button>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </clr-dg-action-bar>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }"> ID </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      merged_silos
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      accessible_by
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      user_operations
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: false }">
+      silo_uuid
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: false }">
+      silo_name
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: false }">
+      silo_label
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      status
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      saving_mode
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }"> path </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: false }">
+      row_count
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      silo_version
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: false }">
+      primary_column
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: false }">
+      create_date
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: false }">
+      modified_date
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      source
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      organization
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }"> owner </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      credentials
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      parent_silo
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      base_silo
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-column>
+    <ng-container *clrDgHideableColumn="{ hidden: true }">
+      created_by
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-row *ngFor="let silo of silos" [clrDgItem]="silo">
+    <clr-dg-cell>{{ silo.id }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.merged_silos | json }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.accessible_by | json }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.user_operations }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.silo_uuid }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.silo_name }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.silo_label }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.status }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.saving_mode }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.path }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.row_count }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.silo_version }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.primary_column }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.create_date | date }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.modified_date | date }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.source }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.organization | json }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.owner | json }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.credentials | json }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.parent_silo }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.base_silo }}</clr-dg-cell>
+    <clr-dg-cell>{{ silo.created_by | json }}</clr-dg-cell>
+
+    <clr-dg-action-overflow>
+      <button class="action-item" (click)="edit(silo)">View Data</button>
+      <button class="action-item" (click)="edit(silo)">
+        Fork / Create Copy
+      </button>
+      <button class="action-item" (click)="edit(silo)">Edit</button>
+      <button class="action-item clr-text-danger" (click)="delete(silo)">
+        Delete
+      </button>
+    </clr-dg-action-overflow>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-pagination
+      #pagination
+      [clrDgPageSize]="10"
+      [clrDgTotalItems]="silos?.length"
+    >
+      <clr-dg-page-size [clrPageSizeOptions]="[10, 20, 50, 100]"
+        >Items per page</clr-dg-page-size
+      >
+      {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of
+      {{ pagination.totalItems }} silos
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
 
 <frj-uploader [(visible)]="showUploader"> </frj-uploader>
