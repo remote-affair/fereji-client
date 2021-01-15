@@ -26,7 +26,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private readonly AUTH_HEADER = 'Authorization';
-  private token: Token;
+  private token!: Token;
   private isRefreshingToken = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
     null,
@@ -36,9 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
     private tokenService: TokenStorageService,
     private httpService: HttpService,
     private router: Router,
-  ) {
-    this.token = this.tokenService.getToken();
-  }
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -103,6 +101,8 @@ export class AuthInterceptor implements HttpInterceptor {
    * @returns the manipulated request object
    */
   private addAuthenticationToken(request: HttpRequest<any>): HttpRequest<any> {
+    this.token = this.tokenService.getToken();
+
     // If we do not have a token yet, then we should not set the header
     if (!this.token) {
       return request;
@@ -148,12 +148,18 @@ export class AuthInterceptor implements HttpInterceptor {
   private refreshToken(): Observable<boolean> {
     this.tokenService.removeToken();
 
-    return this.httpService.makeRequest('GET', '/user/auth').pipe(
-      tap(token => {
-        this.tokenService.saveToken(token);
-      }),
-      map(() => true),
-      catchError(() => of(false)),
-    );
+    return this.httpService
+      .makeRequest('POST', 'token/refresh/', {
+        body: {
+          refresh: this.token.refresh,
+        },
+      })
+      .pipe(
+        tap(token => {
+          this.tokenService.saveToken(token);
+        }),
+        map(() => true),
+        catchError(() => of(false)),
+      );
   }
 }
