@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { ClrLoadingState } from '@clr/angular';
 
-import { AuthApiService } from '@fereji/services/apis/auth-api.service';
+import { AuthApiService } from '@fereji/services/apis/auth/auth-api.service';
 import { TokenStorageService } from '@fereji/services/token-storage/token-storage.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { HttpService } from '../http/http.service';
+import { HttpService } from '../../http/http.service';
 
 import { AuthApiService } from './auth-api.service';
 

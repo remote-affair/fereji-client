@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ConfirmationModel } from '@fereji/models/shared/confirmation-model';
-import { AuthApiService } from '@fereji/services/apis/auth-api.service';
+import { AuthApiService } from '@fereji/services/apis/auth/auth-api.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

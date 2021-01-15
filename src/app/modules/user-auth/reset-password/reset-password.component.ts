@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClrLoadingState } from '@clr/angular';
 import { ResetPasswordModel } from '@fereji/models/users/reset-password-model';
-import { AuthApiService } from '@fereji/services/apis/auth-api.service';
+import { AuthApiService } from '@fereji/services/apis/auth/auth-api.service';
 import { TokenStorageService } from '@fereji/services/token-storage/token-storage.service';
 import { ToastrService } from 'ngx-toastr';
 

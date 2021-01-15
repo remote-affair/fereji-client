@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { CreateAccountModel } from '@fereji/models/users/create-account-model';
-import { AuthApiService } from '@fereji/services/apis/auth-api.service';
+import { AuthApiService } from '@fereji/services/apis/auth/auth-api.service';
 import { ClrLoadingState } from '@clr/angular';
 
 @Component({

@@ -6,8 +6,7 @@ import { CreateAccountModel } from '@fereji/models/users/create-account-model';
 import { LoginModel } from '@fereji/models/users/login-model';
 import { PasswordResetRequestModel } from '@fereji/models/users/password-reset-request-model';
 import { ResetPasswordModel } from '@fereji/models/users/reset-password-model';
-
-import { HttpService } from '../http/http.service';
+import { HttpService } from '@fereji/services/http/http.service';
 
 @Injectable({
   providedIn: 'root',

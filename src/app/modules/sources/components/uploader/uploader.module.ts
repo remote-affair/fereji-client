@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ClrFormsModule, ClrInputModule, ClrModalModule } from '@clr/angular';
+import {
+  ClrFormsModule,
+  ClrIconModule,
+  ClrInputModule,
+  ClrModalModule,
+} from '@clr/angular';
 
 import { UploaderComponent } from './uploader.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ClrFormsModule,
     ClrInputModule,
     ReactiveFormsModule,
+    ClrIconModule,
   ],
   exports: [UploaderComponent],
 })

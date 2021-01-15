@@ -8,7 +8,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { TopOffsetTitleModule } from '@fereji/modules/layout/components/top-offset-title/top-offset-title.module';
 import { ButtonSpinnerModule } from '@fereji/modules/shared/button-spinner/button-spinner.module';
 import { FormErrorModule } from '@fereji/modules/shared/form-error/form-error.module';
-import { AuthApiService } from '@fereji/services/apis/auth-api.service';
+import { AuthApiService } from '@fereji/services/apis/auth/auth-api.service';
 
 import { SignUpComponent } from './sign-up.component';
 import {

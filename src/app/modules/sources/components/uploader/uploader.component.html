@@ -2,10 +2,40 @@
   <h3 class="modal-title">New Data Source</h3>
 
   <div class="modal-body">
-    <form clrForm clrLayout="vertical" [formGroup]="uploaderForm">
+    <form class="clr-form" [formGroup]="uploaderForm">
+      <div class="clr-form-control">
+        <label for="basic-default" class="clr-control-label">File</label>
+        <div class="clr-control-container">
+          <div class="clr-file-wrapper">
+            <input
+              type="file"
+              id="basic-default"
+              placeholder="Enter value here"
+              accept=".csv,.xl*"
+              (change)="fileSelected($event)"
+              required
+            />
+          </div>
+          <!-- IMPORTANT DIFFERENCE IN STRUCTURE! ICON IS NOT PART OF THE INPUT WRAPPER -->
+          <clr-icon
+            class="clr-validate-icon"
+            shape="exclamation-circle"
+          ></clr-icon>
+          <span class="clr-subtext"
+            >Only CSV and Excel file formats allowed.</span
+          >
+        </div>
+      </div>
+
       <clr-input-container>
-        <label for="file">File</label>
-        <input clrInput type="file" formControlName="file" />
+        <label for="siloLabel">Label</label>
+        <input
+          clrInput
+          id="siloLabel"
+          type="text"
+          formControlName="silo_label"
+          placeholder="New file name"
+        />
       </clr-input-container>
     </form>
 
@@ -13,7 +43,12 @@
       <button type="reset" class="btn btn-outline" (click)="closed()">
         Cancel
       </button>
-      <button type="submit" class="btn btn-primary" (click)="upload()">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="uploaderForm.invalid"
+        (click)="upload()"
+      >
         Upload
       </button>
     </div>

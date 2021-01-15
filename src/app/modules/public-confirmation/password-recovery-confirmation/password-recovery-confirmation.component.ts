@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { ConfirmationModel } from '@fereji/models/shared/confirmation-model';
-import { AuthApiService } from '@fereji/services/apis/auth-api.service';
+import { AuthApiService } from '@fereji/services/apis/auth/auth-api.service';
 import { TokenConfirmationModel } from '@fereji/models/shared/token-confirmation-model';
 import { TokenStorageService } from '@fereji/services/token-storage/token-storage.service';
 
