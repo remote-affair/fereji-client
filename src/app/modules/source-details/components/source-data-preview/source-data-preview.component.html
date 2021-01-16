@@ -1,1 +1,29 @@
-<p>source-data-preview works!</p>
+<clr-datagrid [clrDgLoading]="isFetching" *ngIf="siloData?.length">
+  <clr-dg-column
+    *ngFor="let col of columns"
+    [clrDgField]="col.name"
+    [style.width.px]="200"
+  >
+    <ng-container *clrDgHideableColumn="{ hidden: false }">
+      {{ col.name }}
+    </ng-container>
+  </clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let row of siloData" [clrDgItem]="row">
+    <clr-dg-cell *ngFor="let col of columns" [style.width.px]="200">{{
+      row[col.name]
+    }}</clr-dg-cell>
+  </clr-dg-row>
+</clr-datagrid>
+
+<clr-datagrid *ngIf="!isFetching && !siloData?.length">
+  <clr-dg-column>column_0</clr-dg-column>
+  <clr-dg-column>column_1</clr-dg-column>
+  <clr-dg-column>column_2</clr-dg-column>
+  <clr-dg-column>column_3</clr-dg-column>
+  <clr-dg-column>column_4</clr-dg-column>
+
+  <clr-dg-placeholder
+    >Oops, we could not load for this silo
+  </clr-dg-placeholder>
+</clr-datagrid>

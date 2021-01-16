@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { ClrIconModule, ClrVerticalNavModule } from '@clr/angular';
 import { SourcesDashboardModule } from '@fereji/modules/sources/components/sources-dashboard/sources-dashboard.module';
 import { UploaderModule } from '@fereji/modules/sources/components/uploader/uploader.module';
@@ -18,6 +19,7 @@ describe('DashboardComponent', () => {
         UploaderModule,
         HttpClientModule,
         SourcesDashboardModule,
+        RouterTestingModule,
       ],
     }).compileComponents();
   });

@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { Observable } from 'rxjs';
 
 import { DataSiloService } from '@fereji/services/apis/data-silo/data-silo.service';
-import { Observable } from 'rxjs';
+import { DataSource } from '@fereji/models/data-source';
 
 @Component({
   selector: 'frj-uploader',
@@ -21,6 +24,7 @@ export class UploaderComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly siloService: DataSiloService,
+    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -59,8 +63,8 @@ export class UploaderComponent implements OnInit {
       });
 
       const sub = this.siloService.upload(formData).subscribe({
-        next: resp => {
-          console.log({ resp });
+        next: (resp: DataSource) => {
+          this.router.navigate(['/data/sources', resp.silo_uuid]);
         },
         error: err => {
           this.showError = true;

@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SourceDataPreviewComponent } from './source-data-preview.component';
 
@@ -9,6 +11,7 @@ describe('SourceDataPreviewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SourceDataPreviewComponent],
+      imports: [RouterTestingModule, HttpClientModule],
     }).compileComponents();
   });
 

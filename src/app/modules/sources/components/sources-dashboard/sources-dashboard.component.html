@@ -1,3 +1,28 @@
-<pre>
+<!-- <pre>
     {{ silos$ | async | json }}
-</pre>
+    <div>
+
+    </div>
+</pre> -->
+
+<div class="card-columns">
+  <div class="card" *ngFor="let silo of silos$ | async">
+    <div class="card-block">
+      <h3 class="card-title">{{ silo.silo_label || silo.silo_name }}</h3>
+
+      <p class="card-text">
+        Rows: {{ silo.row_count }} Columns: {{ silo.column_count }}
+      </p>
+      <p class="card-text">Created: {{ silo.create_date | date }}</p>
+    </div>
+    <div class="card-footer">
+      <a
+        [routerLink]="['/data/sources/', silo.silo_uuid]"
+        role="button"
+        class="btn btn-icon"
+      >
+        <clr-icon shape="folder-open"></clr-icon>
+      </a>
+    </div>
+  </div>
+</div>

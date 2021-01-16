@@ -6,17 +6,12 @@ import { SourceDataPreviewComponent } from './components/source-data-preview/sou
 import { SourceDetailsComponent } from './components/source-details/source-details.component';
 
 const routes: Routes = [
+  { path: 'data-preview', component: SourceDataPreviewComponent },
   {
-    path: '',
-    component: SourceDetailsComponent,
-    children: [
-      { path: 'data-preview', component: SourceDataPreviewComponent },
-      {
-        path: 'data-operations',
-        component: SourceDataOperationsComponent,
-      },
-    ],
+    path: 'data-operations',
+    component: SourceDataOperationsComponent,
   },
+  { path: '', redirectTo: 'data-preview', pathMatch: 'full' },
 ];
 
 @NgModule({
