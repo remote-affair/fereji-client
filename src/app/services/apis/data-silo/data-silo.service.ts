@@ -30,10 +30,12 @@ export class DataSiloService {
   getSiloData(
     siloUuid: string,
     format: 'json_data' | 'csv_data' | 'excel_data' = 'json_data',
+    options = {},
   ) {
     return this.http.makeRequest(
       'GET',
       `${this.DATA_SILO_ENDPOINT}${siloUuid}/${format}/`,
+      options,
     );
   }
 

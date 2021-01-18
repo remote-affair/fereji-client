@@ -1,4 +1,35 @@
 <clr-datagrid>
+  <clr-dg-action-bar>
+    <div class="btn-group">
+      <clr-dropdown>
+        <button
+          type="button"
+          class="btn btn-sm btn-secondary"
+          clrDropdownTrigger
+        >
+          Export / Download
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+          <button
+            type="button"
+            clrDropdownItem
+            (click)="downloadFile('csv_data')"
+          >
+            As CSV File
+          </button>
+          <button
+            type="button"
+            clrDropdownItem
+            (click)="downloadFile('excel_data')"
+          >
+            As Excel File
+          </button>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </clr-dg-action-bar>
+
   <clr-dg-column
     *ngFor="let col of columns"
     [clrDgField]="col.name"

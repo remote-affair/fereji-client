@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ClrDatagridModule } from '@clr/angular';
+import { ClrDatagridModule, ClrDropdownModule } from '@clr/angular';
 
 import { SourceDetailsRoutingModule } from './source-details-routing.module';
 import { SourceDetailsComponent } from './components/source-details/source-details.component';
@@ -22,6 +22,7 @@ import { ContentLoaderModule } from '../shared/content-loader/content-loader.mod
     ClrDatagridModule,
     SharedModule,
     ContentLoaderModule,
+    ClrDropdownModule,
   ],
 })
 export class SourceDetailsModule {}

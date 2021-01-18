@@ -1,7 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ClrDatagridModule } from '@clr/angular';
+import {
+  ClrDatagridModule,
+  ClrDropdownModule,
+  ClrIconModule,
+} from '@clr/angular';
 import { ContentLoaderModule } from '@fereji/modules/shared/content-loader/content-loader.module';
 
 import { SourceDataPreviewComponent } from './source-data-preview.component';
@@ -18,6 +22,8 @@ describe('SourceDataPreviewComponent', () => {
         HttpClientModule,
         ContentLoaderModule,
         ClrDatagridModule,
+        ClrIconModule,
+        ClrDropdownModule,
       ],
     }).compileComponents();
   });
