@@ -24,8 +24,10 @@
         <clr-icon shape="caret down"></clr-icon>
       </button>
       <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <a routerLink="#" clrDropdownItem>Preferences</a>
-        <a role="button" clrDropdownItem (click)="logout()">Log out</a>
+        <button type="button" clrDropdownItem>Preferences</button>
+        <button type="button" clrDropdownItem (click)="logout()">
+          Log out
+        </button>
       </clr-dropdown-menu>
     </clr-dropdown>
   </div>
