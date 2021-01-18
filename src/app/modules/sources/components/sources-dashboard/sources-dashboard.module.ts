@@ -6,8 +6,10 @@ import {
   ClrDropdownModule,
   ClrIconModule,
   ClrPopoverModule,
+  ClrSpinnerModule,
 } from '@clr/angular';
 import { RouterModule } from '@angular/router';
+import { ContentLoaderModule } from '@fereji/modules/shared/content-loader/content-loader.module';
 
 @NgModule({
   declarations: [SourcesDashboardComponent],
@@ -17,6 +19,8 @@ import { RouterModule } from '@angular/router';
     ClrDropdownModule,
     ClrPopoverModule,
     RouterModule,
+    ClrSpinnerModule,
+    ContentLoaderModule,
   ],
   exports: [SourcesDashboardComponent],
 })

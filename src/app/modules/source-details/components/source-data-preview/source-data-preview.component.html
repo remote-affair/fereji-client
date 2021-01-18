@@ -1,4 +1,4 @@
-<clr-datagrid [clrDgLoading]="isFetching" *ngIf="siloData?.length">
+<clr-datagrid>
   <clr-dg-column
     *ngFor="let col of columns"
     [clrDgField]="col.name"
@@ -14,16 +14,15 @@
       row[col.name]
     }}</clr-dg-cell>
   </clr-dg-row>
-</clr-datagrid>
 
-<clr-datagrid *ngIf="!isFetching && !siloData?.length">
-  <clr-dg-column>column_0</clr-dg-column>
-  <clr-dg-column>column_1</clr-dg-column>
-  <clr-dg-column>column_2</clr-dg-column>
-  <clr-dg-column>column_3</clr-dg-column>
-  <clr-dg-column>column_4</clr-dg-column>
+  <clr-dg-placeholder>
+    <frj-content-loader
+      isMedium
+      *ngIf="isFetching; else noData"
+    ></frj-content-loader>
 
-  <clr-dg-placeholder
-    >Oops, we could not load for this silo
+    <ng-template #noData>
+      <span>Looks like we could not find any data in this silo</span>
+    </ng-template>
   </clr-dg-placeholder>
 </clr-datagrid>

@@ -17,9 +17,12 @@
           name="source"
           required
           formControlName="source"
-          aria-placeholder="Select Source"
         >
-          <option *ngFor="let source of sources$ | async" [value]="source.id">
+          <option selected>Select source</option>
+          <option
+            *ngFor="let source of sources$ | async as sources; index as i"
+            [value]="source.id"
+          >
             {{ source.name }}
           </option>
         </select>

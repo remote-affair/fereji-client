@@ -1,6 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ClrDatagridModule } from '@clr/angular';
+import { ContentLoaderModule } from '@fereji/modules/shared/content-loader/content-loader.module';
 
 import { SourceDataPreviewComponent } from './source-data-preview.component';
 
@@ -11,7 +13,12 @@ describe('SourceDataPreviewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SourceDataPreviewComponent],
-      imports: [RouterTestingModule, HttpClientModule],
+      imports: [
+        RouterTestingModule,
+        HttpClientModule,
+        ContentLoaderModule,
+        ClrDatagridModule,
+      ],
     }).compileComponents();
   });
 

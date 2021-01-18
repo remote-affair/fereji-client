@@ -8,6 +8,7 @@ import { SourceDetailsComponent } from './components/source-details/source-detai
 import { SourceDataPreviewComponent } from './components/source-data-preview/source-data-preview.component';
 import { SourceDataOperationsComponent } from './components/source-data-operations/source-data-operations.component';
 import { SharedModule } from '../shared/shared.module';
+import { ContentLoaderModule } from '../shared/content-loader/content-loader.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SharedModule } from '../shared/shared.module';
     SourceDetailsRoutingModule,
     ClrDatagridModule,
     SharedModule,
+    ContentLoaderModule,
   ],
 })
 export class SourceDetailsModule {}

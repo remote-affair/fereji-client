@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ContentLoaderModule } from '@fereji/modules/shared/content-loader/content-loader.module';
 
 import { SourcesDashboardComponent } from './sources-dashboard.component';
 
@@ -10,7 +11,7 @@ describe('SourcesDashboardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SourcesDashboardComponent],
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, ContentLoaderModule],
     }).compileComponents();
   });
 

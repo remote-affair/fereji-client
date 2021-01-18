@@ -1,7 +1,13 @@
-<button class="btn btn-primary" (click)="showUploader = true">
-  <clr-icon shape="upload"></clr-icon> Upload File
-</button>
+<div>
+  <button class="btn btn-primary" (click)="showUploader = true">
+    <clr-icon shape="upload"></clr-icon> Upload File
+  </button>
+
+  <button class="btn btn-outline-primary" disabled>
+    <clr-icon shape="two-way-arrows"></clr-icon> Merge Tables
+  </button>
+
+  <frj-uploader [(visible)]="showUploader"> </frj-uploader>
+</div>
 
 <frj-sources-dashboard></frj-sources-dashboard>
-
-<frj-uploader [(visible)]="showUploader"> </frj-uploader>

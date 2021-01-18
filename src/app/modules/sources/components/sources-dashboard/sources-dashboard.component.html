@@ -1,12 +1,5 @@
-<!-- <pre>
-    {{ silos$ | async | json }}
-    <div>
-
-    </div>
-</pre> -->
-
-<div class="card-columns">
-  <div class="card" *ngFor="let silo of silos$ | async">
+<div class="card-columns" *ngIf="silos$ | async as silos; else loading">
+  <div class="card" *ngFor="let silo of silos">
     <div class="card-block">
       <h3 class="card-title">{{ silo.silo_label || silo.silo_name }}</h3>
 
@@ -26,3 +19,7 @@
     </div>
   </div>
 </div>
+
+<ng-template #loading>
+  <frj-content-loader isMedium></frj-content-loader>
+</ng-template>
