@@ -16,6 +16,7 @@ export class SourceDataPreviewComponent implements OnInit {
   columns: Array<{ hidden: boolean; name: string }> = [];
   isFetching = false;
   silo!: DataSource;
+  selected: Array<any> = [];
 
   private siloUuid!: string;
 

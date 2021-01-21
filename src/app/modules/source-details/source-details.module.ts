@@ -9,12 +9,14 @@ import { SourceDataPreviewComponent } from './components/source-data-preview/sou
 import { SourceDataOperationsComponent } from './components/source-data-operations/source-data-operations.component';
 import { SharedModule } from '../shared/shared.module';
 import { ContentLoaderModule } from '../shared/content-loader/content-loader.module';
+import { SourceDetailsEditComponent } from './components/source-details-edit/source-details-edit.component';
 
 @NgModule({
   declarations: [
     SourceDetailsComponent,
     SourceDataPreviewComponent,
     SourceDataOperationsComponent,
+    SourceDetailsEditComponent,
   ],
   imports: [
     CommonModule,

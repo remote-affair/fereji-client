@@ -1,4 +1,7 @@
-<clr-datagrid>
+<clr-datagrid
+  [(clrDgSelected)]="selected"
+  *ngIf="!isFetching && siloData.length; else fetching"
+>
   <clr-dg-action-bar>
     <div class="btn-group">
       <clr-dropdown>
@@ -46,14 +49,25 @@
     }}</clr-dg-cell>
   </clr-dg-row>
 
-  <clr-dg-placeholder>
-    <frj-content-loader
-      isMedium
-      *ngIf="isFetching; else noData"
-    ></frj-content-loader>
+  <clr-dg-footer></clr-dg-footer>
 
-    <ng-template #noData>
-      <span>Looks like we could not find any data in this silo</span>
-    </ng-template>
+  <clr-dg-placeholder>
+    Looks like we could not find any data in this silo
   </clr-dg-placeholder>
 </clr-datagrid>
+
+<ng-template #fetching>
+  <clr-datagrid [clrDgLoading]="isFetching">
+    <clr-dg-column>column_0</clr-dg-column>
+    <clr-dg-column>column_1</clr-dg-column>
+    <clr-dg-column>column_2</clr-dg-column>
+    <clr-dg-column>column_3</clr-dg-column>
+    <clr-dg-column>column_4</clr-dg-column>
+    <clr-dg-column>column_5</clr-dg-column>
+
+    <clr-dg-footer></clr-dg-footer>
+    <clr-dg-placeholder>
+      Looks like we could not find any data in this silo
+    </clr-dg-placeholder>
+  </clr-datagrid>
+</ng-template>

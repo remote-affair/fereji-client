@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataSource } from '@fereji/models/data-source';
+import { Router } from '@angular/router';
 
+import { DataSource } from '@fereji/models/data-source';
 import { DataSiloService } from '@fereji/services/apis/data-silo/data-silo.service';
 
 @Component({
@@ -14,7 +15,10 @@ export class SourcesTableComponent implements OnInit {
   selected = [];
   fetching = false;
 
-  constructor(private readonly siloService: DataSiloService) {}
+  constructor(
+    private readonly siloService: DataSiloService,
+    private readonly router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.getSilos();
@@ -38,7 +42,13 @@ export class SourcesTableComponent implements OnInit {
 
   exportAll() {}
   exportSelected() {}
-  edit(silo: DataSource | null = null) {}
+  edit(silo: DataSource) {
+    this.router.navigate(['/data/sources', silo.silo_uuid, 'edit']);
+  }
   delete(silo: DataSource | null = null) {}
   add(silo: DataSource | null = null) {}
+
+  viewData(silo: DataSource) {
+    this.router.navigate(['/data/sources', silo.silo_uuid]);
+  }
 }

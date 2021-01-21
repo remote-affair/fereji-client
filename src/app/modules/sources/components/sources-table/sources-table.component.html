@@ -12,7 +12,12 @@
       >
         <clr-icon shape="plus"></clr-icon> Add to group
       </button>
-      <button type="button" class="btn btn-sm btn-secondary" (click)="delete()">
+      <button
+        *ngIf="selected.length"
+        type="button"
+        class="btn btn-sm btn-outline-danger"
+        (click)="delete()"
+      >
         <clr-icon shape="close"></clr-icon> Delete
       </button>
       <button
@@ -202,14 +207,11 @@
     <clr-dg-cell>{{ silo.created_by | json }}</clr-dg-cell>
 
     <clr-dg-action-overflow>
-      <button class="action-item" (click)="edit(silo)">View Data</button>
-      <button class="action-item" (click)="edit(silo)">
-        Fork / Create Copy
-      </button>
-      <button class="action-item" (click)="edit(silo)">Edit</button>
-      <button class="action-item clr-text-danger" (click)="delete(silo)">
-        Delete
-      </button>
+      <button class="action-item" (click)="viewData(silo)">View Data</button>
+      <div class="dropdown-divider"></div>
+      <button class="action-item" (click)="edit(silo)">Modify</button>
+
+      <button class="action-item" (click)="delete(silo)">Delete</button>
     </clr-dg-action-overflow>
   </clr-dg-row>
 

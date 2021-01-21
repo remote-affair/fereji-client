@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SourceDataOperationsComponent } from './components/source-data-operations/source-data-operations.component';
 import { SourceDataPreviewComponent } from './components/source-data-preview/source-data-preview.component';
-
-import { SourceDetailsComponent } from './components/source-details/source-details.component';
+import { SourceDetailsEditComponent } from './components/source-details-edit/source-details-edit.component';
 
 const routes: Routes = [
+  { path: 'edit', component: SourceDetailsEditComponent },
   { path: 'data-preview', component: SourceDataPreviewComponent },
   {
     path: 'data-operations',
