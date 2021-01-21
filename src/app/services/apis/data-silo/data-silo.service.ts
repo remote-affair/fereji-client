@@ -27,6 +27,13 @@ export class DataSiloService {
     );
   }
 
+  deleteDataSilo(siloUuid: string) {
+    return this.http.makeRequest(
+      'DELETE',
+      `${this.DATA_SILO_ENDPOINT}${siloUuid}`,
+    );
+  }
+
   getSiloData(
     siloUuid: string,
     format: 'json_data' | 'csv_data' | 'excel_data' = 'json_data',

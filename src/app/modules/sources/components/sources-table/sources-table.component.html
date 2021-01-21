@@ -211,7 +211,12 @@
       <div class="dropdown-divider"></div>
       <button class="action-item" (click)="edit(silo)">Modify</button>
 
-      <button class="action-item" (click)="delete(silo)">Delete</button>
+      <button
+        class="action-item"
+        (click)="showConfirmDelete = true; currentSilo = silo"
+      >
+        Delete
+      </button>
     </clr-dg-action-overflow>
   </clr-dg-row>
 
@@ -219,3 +224,10 @@
 </clr-datagrid>
 
 <frj-uploader [(visible)]="showUploader"> </frj-uploader>
+
+<frj-confirm-delete
+  [(visible)]="showConfirmDelete"
+  (visibleChange)="getSilos()"
+  [silo]="currentSilo"
+>
+</frj-confirm-delete>

@@ -14,6 +14,8 @@ export class SourcesTableComponent implements OnInit {
   silos!: Array<DataSource>;
   selected = [];
   fetching = false;
+  currentSilo: DataSource | null = null;
+  showConfirmDelete = false;
 
   constructor(
     private readonly siloService: DataSiloService,
@@ -45,7 +47,9 @@ export class SourcesTableComponent implements OnInit {
   edit(silo: DataSource) {
     this.router.navigate(['/data/sources', silo.silo_uuid, 'edit']);
   }
-  delete(silo: DataSource | null = null) {}
+
+  delete() {}
+
   add(silo: DataSource | null = null) {}
 
   viewData(silo: DataSource) {

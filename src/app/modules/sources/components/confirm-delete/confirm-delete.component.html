@@ -1,0 +1,32 @@
+<clr-modal [clrModalOpen]="visible" (clrModalOpenChange)="close()">
+  <h3 class="modal-title">Delete {{ silo?.silo_label || silo?.silo_name }}?</h3>
+  <div class="modal-body">
+    <clr-alert [clrAlertType]="'danger'" *ngIf="showError">
+      <clr-alert-item>
+        <span class="alert-text"> {{ errorMessage }} </span>
+      </clr-alert-item>
+    </clr-alert>
+    <p>
+      Are you sure you want to delete this silo? This action cannot be reversed.
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="close()"
+      [disabled]="isDeleting"
+    >
+      Cancel
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="delete()"
+      [clrLoading]="isDeleting"
+    >
+      Delete
+    </button>
+  </div>
+</clr-modal>
